@@ -33,7 +33,7 @@ jobs:
       - name: Lint & type-check
         run: |
           npm run lint
-          npx tsc --noEmit
+          npm run typecheck
 
       - name: Build static site
         run: npm run build
