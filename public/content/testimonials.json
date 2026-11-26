@@ -1,0 +1,71 @@
+{
+  "_note": "SAMPLE testimonials for layout only. Replace with real student feedback (with permission) and set \"sample\": false. Samples show a 'Sample' label on the site.",
+  "testimonials": [
+    {
+      "sample": true,
+      "name": "Student name",
+      "role": "Saree boutique owner",
+      "role_te": "చీరల బొటిక్ యజమాని",
+      "service": "Meta Ads",
+      "service_te": "మెటా యాడ్స్",
+      "rating": 5,
+      "quote": "Replace with a real review — e.g. how Meta ads brought new customers to the shop.",
+      "quote_te": "ఇక్కడ నిజమైన అభిప్రాయం పెట్టండి — ఉదా: మెటా యాడ్స్ వల్ల షాప్‌కి కొత్త కస్టమర్లు ఎలా వచ్చారు."
+    },
+    {
+      "sample": true,
+      "name": "Student name",
+      "role": "Home baker",
+      "role_te": "హోమ్ బేకర్",
+      "service": "AI Video Creation",
+      "service_te": "AI వీడియో క్రియేషన్",
+      "rating": 5,
+      "quote": "Replace with a real review — e.g. making Reels with AI tools for the first time.",
+      "quote_te": "ఇక్కడ నిజమైన అభిప్రాయం పెట్టండి — ఉదా: మొదటిసారి AI టూల్స్‌తో రీల్స్ చేయడం."
+    },
+    {
+      "sample": true,
+      "name": "Student name",
+      "role": "College student",
+      "role_te": "కాలేజ్ విద్యార్థి",
+      "service": "Affiliate Marketing",
+      "service_te": "అఫిలియేట్ మార్కెటింగ్",
+      "rating": 5,
+      "quote": "Replace with a real review — e.g. earning a first affiliate commission.",
+      "quote_te": "ఇక్కడ నిజమైన అభిప్రాయం పెట్టండి — ఉదా: మొదటి అఫిలియేట్ కమీషన్ సంపాదించడం."
+    },
+    {
+      "sample": true,
+      "name": "Student name",
+      "role": "Tuition centre",
+      "role_te": "ట్యూషన్ సెంటర్",
+      "service": "Poster Designing",
+      "service_te": "పోస్టర్ డిజైనింగ్",
+      "rating": 5,
+      "quote": "Replace with a real review — e.g. admission posters designed in Canva.",
+      "quote_te": "ఇక్కడ నిజమైన అభిప్రాయం పెట్టండి — ఉదా: Canva లో అడ్మిషన్ పోస్టర్లు డిజైన్ చేయడం."
+    },
+    {
+      "sample": true,
+      "name": "Student name",
+      "role": "Beauty parlour",
+      "role_te": "బ్యూటీ పార్లర్",
+      "service": "Meta Ads",
+      "service_te": "మెటా యాడ్స్",
+      "rating": 5,
+      "quote": "Replace with a real review — e.g. more bookings from Instagram.",
+      "quote_te": "ఇక్కడ నిజమైన అభిప్రాయం పెట్టండి — ఉదా: Instagram నుండి ఎక్కువ బుకింగ్స్."
+    },
+    {
+      "sample": true,
+      "name": "Student name",
+      "role": "Homemaker",
+      "role_te": "గృహిణి",
+      "service": "AI Video Creation",
+      "service_te": "AI వీడియో క్రియేషన్",
+      "rating": 5,
+      "quote": "Replace with a real review — e.g. starting a YouTube channel from home.",
+      "quote_te": "ఇక్కడ నిజమైన అభిప్రాయం పెట్టండి — ఉదా: ఇంటి నుండే YouTube ఛానల్ మొదలుపెట్టడం."
+    }
+  ]
+}

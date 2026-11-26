@@ -1,0 +1,68 @@
+{
+  "skills": [
+    {
+      "title": "Hook in 2 seconds",
+      "body": "Open every Reel with the result first, then show how. Viewers decide in the first two seconds.",
+      "tag": "AI Video",
+      "title_te": "2 సెకన్లలో ఆకట్టుకోండి",
+      "body_te": "ప్రతి రీల్‌ను ముందుగా ఫలితంతో మొదలుపెట్టి, తర్వాత ఎలా చేశారో చూపించండి. చూసేవారు మొదటి రెండు సెకన్లలోనే నిర్ణయిస్తారు.",
+      "tag_te": "AI వీడియో"
+    },
+    {
+      "title": "One message per poster",
+      "body": "A poster should say one thing. Big headline, one offer, one call to action.",
+      "tag": "Poster Design",
+      "title_te": "ఒక పోస్టర్‌కు ఒకే సందేశం",
+      "body_te": "పోస్టర్ ఒక్క విషయమే చెప్పాలి. పెద్ద హెడ్‌లైన్, ఒక ఆఫర్, ఒక కాల్ టు యాక్షన్.",
+      "tag_te": "పోస్టర్ డిజైన్"
+    },
+    {
+      "title": "Start ads small",
+      "body": "Run a Meta ad at a small daily budget for 3 days, then put more money behind the winner.",
+      "tag": "Meta Ads",
+      "title_te": "యాడ్స్ చిన్నగా మొదలుపెట్టండి",
+      "body_te": "మెటా యాడ్‌ను చిన్న రోజువారీ బడ్జెట్‌తో 3 రోజులు నడపండి, తర్వాత గెలిచిన యాడ్‌పై ఎక్కువ ఖర్చు పెట్టండి.",
+      "tag_te": "మెటా యాడ్స్"
+    },
+    {
+      "title": "Promote what you use",
+      "body": "Affiliate links convert best when you show the product in your own hands.",
+      "tag": "Affiliate",
+      "title_te": "మీరు వాడేదే ప్రమోట్ చేయండి",
+      "body_te": "ప్రొడక్ట్‌ను మీ చేతుల్లో చూపించినప్పుడు అఫిలియేట్ లింక్స్ బాగా పనిచేస్తాయి.",
+      "tag_te": "అఫిలియేట్"
+    },
+    {
+      "title": "Captions matter",
+      "body": "Most people watch without sound. Add bold, readable captions to every video.",
+      "tag": "AI Video",
+      "title_te": "క్యాప్షన్లు ముఖ్యం",
+      "body_te": "చాలామంది సౌండ్ లేకుండా చూస్తారు. ప్రతి వీడియోకు పెద్దగా, స్పష్టంగా చదవగలిగే క్యాప్షన్లు పెట్టండి.",
+      "tag_te": "AI వీడియో"
+    },
+    {
+      "title": "Contrast is king",
+      "body": "Dark text on light, or light on dark. If it is hard to read on a phone, it will be skipped.",
+      "tag": "Poster Design",
+      "title_te": "కాంట్రాస్ట్ ముఖ్యం",
+      "body_te": "లైట్ బ్యాక్‌గ్రౌండ్‌పై డార్క్ టెక్స్ట్, లేదా డార్క్‌పై లైట్. ఫోన్‌లో చదవడం కష్టమైతే ఎవరూ ఆగరు.",
+      "tag_te": "పోస్టర్ డిజైన్"
+    },
+    {
+      "title": "Retarget warm viewers",
+      "body": "Show your next ad to people who watched 50% of your last video. They already know you.",
+      "tag": "Meta Ads",
+      "title_te": "ఆసక్తి చూపినవారికి మళ్ళీ చూపించండి",
+      "body_te": "మీ గత వీడియోను సగం చూసినవారికి తర్వాతి యాడ్ చూపించండి. వాళ్ళకు మీరు ఇప్పటికే తెలుసు.",
+      "tag_te": "మెటా యాడ్స్"
+    },
+    {
+      "title": "Disclose your links",
+      "body": "Always tell your audience when a link is an affiliate link. Trust is what you are building.",
+      "tag": "Affiliate",
+      "title_te": "మీ లింక్స్ గురించి చెప్పండి",
+      "body_te": "ఏ లింక్ అఫిలియేట్ లింకో ఎప్పుడూ చెప్పండి. మీరు నిర్మిస్తున్నది నమ్మకం.",
+      "tag_te": "అఫిలియేట్"
+    }
+  ]
+}
