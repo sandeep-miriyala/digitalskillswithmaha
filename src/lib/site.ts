@@ -12,10 +12,10 @@ export const site = {
     "Digital Skills with Maha — AI video creation, poster designing, Meta ads and affiliate marketing. Learn one skill, every day.",
   url: "https://sandeep-miriyala.github.io/digitalskillswithmaha",
   links: {
-    whatsapp: "https://wa.me/91XXXXXXXXXX", // TODO: real number, e.g. 919876543210
+    whatsapp: "https://wa.me/919966610329", // TODO: real number, e.g. 919876543210
     instagram: "https://www.instagram.com/digitalskillswithmaha", // TODO: confirm handle
     youtube: "https://www.youtube.com/@digitalskillswithmaha", // TODO: confirm handle
-    email: "mailto:hello@example.com", // TODO: real email
+    email: "mailto:mahalakshmi.222@gmail.com", // TODO: real email
   },
   pillars: ["Learn", "Create", "Grow", "Succeed"] as const,
 } as const;
