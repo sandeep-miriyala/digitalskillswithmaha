@@ -1,10 +1,11 @@
 "use client";
 
-import { Mail } from "lucide-react";
+import { ClipboardList, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { useLanguage } from "@/i18n/language";
 import { site, whatsappLink } from "@/lib/site";
 import { InstagramIcon, WhatsAppIcon, YouTubeIcon } from "./brand-icons";
+import { goToRegister } from "./chat-parts";
 
 const channels = [
   { label: "WhatsApp", href: site.links.whatsapp, Icon: WhatsAppIcon, color: "#22b35e" },
@@ -59,6 +60,14 @@ export function ContactCta() {
                 <WhatsAppIcon className="size-5" />
                 {t.contact.book}
               </a>
+              <button
+                type="button"
+                onClick={goToRegister}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/5 px-6 font-bold text-[#f4f1ea] transition hover:bg-white/10"
+              >
+                <ClipboardList className="size-5 text-[#ffd27a]" aria-hidden />
+                {t.chatHome.registerNow}
+              </button>
               <ul className="grid grid-cols-4 gap-2">
                 {channels.map(({ label, href, Icon, color }) => (
                   <li key={label}>

@@ -5,39 +5,47 @@ import type { Lang } from "@/i18n/dictionary";
  * (no server). On Netlify, questions not covered here go to the AI function.
  * Edit answers freely — keep both languages.
  */
-export type Answer = { text: string; whatsapp?: boolean };
+export type Answer = {
+  text: string;
+  /** Show a "Talk to Maha on WhatsApp" button */
+  whatsapp?: boolean;
+  /** Show a "Register now" button (scrolls to the enquiry form) */
+  register?: boolean;
+  /** Show the matching service card (0 AI Video, 1 Poster, 2 Meta Ads, 3 Affiliate) */
+  service?: number;
+};
 type Entry = { keys: string[]; en: Answer; te: Answer };
 
 const FAQ: Entry[] = [
   {
     keys: ["service", "offer", "what do you do", "help with", "సేవ", "ఏమి చేస్తారు", "ఏ సేవలు"],
-    en: { text: "Maha offers four services:\n• AI Video Creation\n• Poster Designing\n• Meta Ads (Facebook & Instagram)\n• Affiliate Marketing\nEach is available done-for-you or as step-by-step training." },
-    te: { text: "మహా గారు నాలుగు సేవలు అందిస్తారు:\n• AI వీడియో క్రియేషన్\n• పోస్టర్ డిజైనింగ్\n• మెటా యాడ్స్ (Facebook & Instagram)\n• అఫిలియేట్ మార్కెటింగ్\nమీ కోసం చేసిపెడతారు, లేదా స్టెప్ బై స్టెప్ నేర్పిస్తారు." },
+    en: { text: "Maha offers four services:\n• AI Video Creation\n• Poster Designing\n• Meta Ads (Facebook & Instagram)\n• Affiliate Marketing\nEach is available done-for-you or as step-by-step training.", register: true },
+    te: { text: "మహా గారు నాలుగు సేవలు అందిస్తారు:\n• AI వీడియో క్రియేషన్\n• పోస్టర్ డిజైనింగ్\n• మెటా యాడ్స్ (Facebook & Instagram)\n• అఫిలియేట్ మార్కెటింగ్\nమీ కోసం చేసిపెడతారు, లేదా స్టెప్ బై స్టెప్ నేర్పిస్తారు.", register: true },
   },
   {
     keys: ["meta", "facebook ad", "instagram ad", "ads cost", "ad cost", "budget", "యాడ్", "ఖర్చు", "బడ్జెట్"],
-    en: { text: "You can start Meta ads with a small daily budget, test for 3–5 days, then spend more on the ad that works. Maha will suggest a budget that fits your business.", whatsapp: true },
-    te: { text: "మెటా యాడ్స్‌ను చిన్న రోజువారీ బడ్జెట్‌తో మొదలుపెట్టి, 3–5 రోజులు టెస్ట్ చేసి, బాగా పనిచేసే యాడ్‌పై ఎక్కువ ఖర్చు పెట్టవచ్చు. మీ వ్యాపారానికి సరిపడే బడ్జెట్‌ను మహా గారు సూచిస్తారు.", whatsapp: true },
+    en: { text: "You can start Meta ads with a small daily budget, test for 3–5 days, then spend more on the ad that works. Maha will suggest a budget that fits your business.", service: 2 },
+    te: { text: "మెటా యాడ్స్‌ను చిన్న రోజువారీ బడ్జెట్‌తో మొదలుపెట్టి, 3–5 రోజులు టెస్ట్ చేసి, బాగా పనిచేసే యాడ్‌పై ఎక్కువ ఖర్చు పెట్టవచ్చు. మీ వ్యాపారానికి సరిపడే బడ్జెట్‌ను మహా గారు సూచిస్తారు.", service: 2 },
   },
   {
     keys: ["video", "reel", "ai video", "వీడియో", "రీల్"],
-    en: { text: "AI Video Creation: short Reels and promo videos made with AI tools — script, voice, editing and captions. Tip: show the result in the first 2 seconds." },
-    te: { text: "AI వీడియో క్రియేషన్: AI టూల్స్‌తో చిన్న రీల్స్, ప్రమోషన్ వీడియోలు — స్క్రిప్ట్, వాయిస్, ఎడిటింగ్, క్యాప్షన్లతో. టిప్: ఫలితాన్ని మొదటి 2 సెకన్లలోనే చూపించండి." },
+    en: { text: "AI Video Creation: short Reels and promo videos made with AI tools — script, voice, editing and captions. Tip: show the result in the first 2 seconds.", service: 0 },
+    te: { text: "AI వీడియో క్రియేషన్: AI టూల్స్‌తో చిన్న రీల్స్, ప్రమోషన్ వీడియోలు — స్క్రిప్ట్, వాయిస్, ఎడిటింగ్, క్యాప్షన్లతో. టిప్: ఫలితాన్ని మొదటి 2 సెకన్లలోనే చూపించండి.", service: 0 },
   },
   {
     keys: ["poster", "design", "canva", "flyer", "పోస్టర్", "డిజైన్"],
-    en: { text: "Poster Designing: clean posters for offers, festivals and launches. One headline, one offer, one call to action — readable on a phone." },
-    te: { text: "పోస్టర్ డిజైనింగ్: ఆఫర్లు, పండుగలు, లాంచ్‌ల కోసం స్పష్టమైన పోస్టర్లు. ఒక హెడ్‌లైన్, ఒక ఆఫర్, ఒక కాల్ టు యాక్షన్ — ఫోన్‌లో సులభంగా చదవగలిగేలా." },
+    en: { text: "Poster Designing: clean posters for offers, festivals and launches. One headline, one offer, one call to action — readable on a phone.", service: 1 },
+    te: { text: "పోస్టర్ డిజైనింగ్: ఆఫర్లు, పండుగలు, లాంచ్‌ల కోసం స్పష్టమైన పోస్టర్లు. ఒక హెడ్‌లైన్, ఒక ఆఫర్, ఒక కాల్ టు యాక్షన్ — ఫోన్‌లో సులభంగా చదవగలిగేలా.", service: 1 },
   },
   {
     keys: ["affiliate", "earn", "income", "అఫిలియేట్", "సంపాద"],
-    en: { text: "Affiliate Marketing: earn a commission by recommending products you trust. Maha teaches how to pick products, create content and share links honestly." },
-    te: { text: "అఫిలియేట్ మార్కెటింగ్: మీరు నమ్మే ప్రొడక్ట్స్‌ను సిఫారసు చేసి కమీషన్ సంపాదించండి. ప్రొడక్ట్స్ ఎంచుకోవడం, కంటెంట్ తయారు చేయడం, లింక్స్ నిజాయితీగా షేర్ చేయడం మహా గారు నేర్పిస్తారు." },
+    en: { text: "Affiliate Marketing: earn a commission by recommending products you trust. Maha teaches how to pick products, create content and share links honestly.", service: 3 },
+    te: { text: "అఫిలియేట్ మార్కెటింగ్: మీరు నమ్మే ప్రొడక్ట్స్‌ను సిఫారసు చేసి కమీషన్ సంపాదించండి. ప్రొడక్ట్స్ ఎంచుకోవడం, కంటెంట్ తయారు చేయడం, లింక్స్ నిజాయితీగా షేర్ చేయడం మహా గారు నేర్పిస్తారు.", service: 3 },
   },
   {
-    keys: ["class", "course", "join", "fee", "price", "batch", "learn", "క్లాస్", "కోర్సు", "చేర", "ఫీజు", "నేర్చుకో"],
-    en: { text: "To join a class or get fees and batch timings, message Maha on WhatsApp — she'll share the current details.", whatsapp: true },
-    te: { text: "క్లాస్‌లో చేరడానికి లేదా ఫీజు, బ్యాచ్ టైమింగ్స్ కోసం మహా గారికి WhatsApp చేయండి — ప్రస్తుత వివరాలు పంపిస్తారు.", whatsapp: true },
+    keys: ["class", "course", "join", "fee", "price", "batch", "learn", "register", "enquiry", "enroll", "క్లాస్", "కోర్సు", "చేర", "ఫీజు", "నేర్చుకో", "రిజిస్టర్"],
+    en: { text: "To join a class or get fees and batch timings, fill the 1-minute registration form or message Maha on WhatsApp — she'll share the current details.", whatsapp: true, register: true },
+    te: { text: "క్లాస్‌లో చేరడానికి లేదా ఫీజు, బ్యాచ్ టైమింగ్స్ కోసం 1 నిమిషం రిజిస్ట్రేషన్ ఫారమ్ నింపండి లేదా మహా గారికి WhatsApp చేయండి — ప్రస్తుత వివరాలు పంపిస్తారు.", whatsapp: true, register: true },
   },
   {
     keys: ["contact", "whatsapp", "call", "phone", "talk", "maha", "సంప్రది", "కాల్", "ఫోన్", "మాట్లాడ", "మహా"],

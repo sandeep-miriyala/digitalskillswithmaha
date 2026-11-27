@@ -27,7 +27,7 @@ export function TodayDate() {
     <time
       dateTime={today.split("-").reverse().join("-")}
       title={t.today}
-      className="flex h-11 items-center gap-2 rounded-xl border border-line bg-surface px-3 text-[13px] font-bold tabular-nums text-ink"
+      className="flex h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl border border-line bg-surface px-2.5 text-[13px] font-bold tabular-nums text-ink sm:px-3"
     >
       <CalendarDays className="size-4 text-gold" aria-hidden />
       <span className="sr-only">{t.today}: </span>

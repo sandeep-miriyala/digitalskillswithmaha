@@ -1,32 +1,23 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
 import { Bot, Send, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
-import { dictionaries } from "@/i18n/dictionary";
 import { useLanguage } from "@/i18n/language";
-import { askAI, chatEndpoint, detectLang, findAnswer } from "@/lib/assistant";
-import { whatsappLink } from "@/lib/site";
-import { WhatsAppIcon } from "./brand-icons";
+import { useMahaChat } from "@/lib/use-maha-chat";
+import { ChatRow } from "./chat-parts";
 
-type Msg = { id: number; role: "user" | "assistant"; text: string; whatsapp?: boolean; pending?: boolean };
-
+/** Floating "Maha" assistant (bottom-left). Used in the Classic page style. */
 export function ChatAssistant() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
+  const { messages, ask, reset, busy } = useMahaChat();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Msg[]>([]);
+  const [nudge, setNudge] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
-  const idRef = useRef(1);
-
-  const ai = useMutation({
-    mutationFn: (v: { message: string; lang: typeof lang; history: { role: "user" | "assistant"; text: string }[] }) =>
-      askAI(v.message, v.lang, v.history),
-  });
 
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
@@ -35,8 +26,6 @@ export function ChatAssistant() {
   useEffect(() => {
     if (open) inputRef.current?.focus();
   }, [open]);
-
-  const [nudge, setNudge] = useState(false);
 
   // Friendly "Hi, I'm Maha" bubble a few seconds after load (once per visit)
   useEffect(() => {
@@ -64,46 +53,15 @@ export function ChatAssistant() {
   /** Closing ends the conversation: messages, input and any pending request are cleared. */
   const close = () => {
     setOpen(false);
-    setMessages([]);
     setInput("");
-    ai.reset();
-    idRef.current = 1;
+    reset();
     requestAnimationFrame(() => launcherRef.current?.focus());
-  };
-
-  const reply = (id: number, patch: Partial<Msg>) =>
-    setMessages((m) => m.map((x) => (x.id === id ? { ...x, ...patch, pending: false } : x)));
-
-  const ask = async (raw: string) => {
-    const question = raw.trim().slice(0, 500);
-    if (!question || ai.isPending) return;
-    const qLang = detectLang(question, lang);
-    const history = messages.filter((m) => !m.pending).map(({ role, text }) => ({ role, text }));
-    const userId = idRef.current;
-    const botId = userId + 1;
-    idRef.current += 2;
-    setMessages((m) => [...m, { id: userId, role: "user", text: question }, { id: botId, role: "assistant", text: "", pending: true }]);
-    setInput("");
-
-    // Answer in the language the visitor typed in
-    const fallback = { text: dictionaries[qLang].chat.fallback, whatsapp: true };
-    const known = findAnswer(question, qLang);
-    if (known || !chatEndpoint) {
-      await new Promise((r) => setTimeout(r, 450));
-      reply(botId, known ?? fallback);
-      return;
-    }
-    try {
-      const text = await ai.mutateAsync({ message: question, lang: qLang, history });
-      reply(botId, { text, whatsapp: true });
-    } catch {
-      reply(botId, fallback);
-    }
   };
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     void ask(input);
+    setInput("");
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -112,7 +70,6 @@ export function ChatAssistant() {
 
   return (
     <>
-      {/* Launcher — always present while the chat is closed */}
       <div className={`fixed bottom-5 left-5 z-[55] ${open ? "pointer-events-none invisible" : ""}`}>
         <AnimatePresence>
           {nudge && !open && (
@@ -182,9 +139,11 @@ export function ChatAssistant() {
             </header>
 
             <div ref={listRef} className="flex min-h-48 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-4 py-4" aria-live="polite">
-              <Bubble role="assistant" text={t.chat.greeting} />
+              <div className="max-w-[90%] self-start whitespace-pre-line rounded-2xl rounded-bl-md border border-line bg-bg-soft px-3.5 py-2.5 text-[14px] leading-relaxed">
+                {t.chat.greeting}
+              </div>
               {messages.map((m) => (
-                <Bubble key={m.id} role={m.role} text={m.text} pending={m.pending} whatsapp={m.whatsapp} talk={t.chat.talk} waText={t.hero.whatsappMsg} />
+                <ChatRow key={m.id} msg={m} onAction={close} />
               ))}
             </div>
 
@@ -218,7 +177,7 @@ export function ChatAssistant() {
               <button
                 type="submit"
                 aria-label={t.chat.send}
-                disabled={!input.trim() || ai.isPending}
+                disabled={!input.trim() || busy}
                 className="grid size-12 place-items-center rounded-xl bg-gold-bright text-navy transition disabled:opacity-50"
               >
                 <Send className="size-5" aria-hidden />
@@ -229,46 +188,5 @@ export function ChatAssistant() {
         )}
       </AnimatePresence>
     </>
-  );
-}
-
-function Bubble({ role, text, pending, whatsapp, talk, waText }: { role: Msg["role"]; text: string; pending?: boolean; whatsapp?: boolean; talk?: string; waText?: string }) {
-  const mine = role === "user";
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`max-w-[86%] whitespace-pre-line rounded-2xl px-3.5 py-2.5 text-[14px] leading-relaxed ${
-        mine ? "self-end rounded-br-md bg-gold-bright font-semibold text-navy" : "self-start rounded-bl-md border border-line bg-bg-soft"
-      }`}
-    >
-      {pending ? (
-        <span className="flex gap-1 py-1" aria-label="…">
-          {[0, 1, 2].map((i) => (
-            <motion.span
-              key={i}
-              className="size-1.5 rounded-full bg-ink-soft"
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 1, repeat: Infinity, delay: i * 0.15 }}
-            />
-          ))}
-        </span>
-      ) : (
-        <>
-          {text}
-          {whatsapp && talk && (
-            <a
-              href={whatsappLink(waText ?? "Hi Maha!")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2.5 flex w-fit items-center gap-2 rounded-xl bg-[#22b35e] px-3 py-2 text-[13px] font-bold text-white"
-            >
-              <WhatsAppIcon className="size-4" />
-              {talk}
-            </a>
-          )}
-        </>
-      )}
-    </motion.div>
   );
 }

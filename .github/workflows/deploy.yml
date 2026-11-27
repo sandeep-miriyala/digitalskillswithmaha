@@ -40,6 +40,8 @@ jobs:
         env:
           # "/digitalskillswithmaha" on username.github.io, "" on a custom domain
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Optional: repo Settings → Secrets → Actions → WEB3FORMS_KEY (else the key in src/lib/site.ts is used)
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
           NEXT_TELEMETRY_DISABLED: 1
 
       - uses: actions/upload-pages-artifact@v3

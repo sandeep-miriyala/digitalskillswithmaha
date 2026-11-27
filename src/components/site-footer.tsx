@@ -15,6 +15,7 @@ export function SiteFooter() {
     { href: "#home", label: t.nav.home },
     { href: "#services", label: t.nav.services },
     { href: "#reviews", label: t.nav.reviews },
+    { href: "#register", label: t.nav.register },
     { href: "#contact", label: t.nav.contact },
   ];
 

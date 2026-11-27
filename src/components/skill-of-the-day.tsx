@@ -6,9 +6,9 @@ import { motion } from "motion/react";
 import { useLanguage } from "@/i18n/language";
 import { asset } from "@/lib/site";
 
-type Skill = { title: string; body: string; tag: string; title_te: string; body_te: string; tag_te: string };
+export type Skill = { title: string; body: string; tag: string; title_te: string; body_te: string; tag_te: string };
 
-async function fetchSkills(): Promise<Skill[]> {
+export async function fetchSkills(): Promise<Skill[]> {
   const res = await fetch(asset("/content/skills.json"));
   if (!res.ok) throw new Error("Could not load skills");
   const data = (await res.json()) as { skills: Skill[] };
@@ -16,7 +16,7 @@ async function fetchSkills(): Promise<Skill[]> {
 }
 
 /** Picks the same skill for everyone on a given day. */
-function todaysIndex(count: number) {
+export function todaysIndex(count: number) {
   const day = Math.floor(Date.now() / 86_400_000);
   return day % count;
 }
