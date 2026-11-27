@@ -10,12 +10,12 @@ export const site = {
   headline: "Let's Grow Your Business Together!",
   description:
     "Digital Skills with Maha — AI video creation, poster designing, Meta ads and affiliate marketing. Learn one skill, every day.",
-  url: "https://sandeep-miriyala.github.io/digitalskillswithmaha",
+  url: "https://sandeep-miriyala.github.io/digitalskillswithmaha/llm",
   links: {
-    whatsapp: "https://wa.me/91XXXXXXXXXX", // TODO: same number as enquiry.whatsappNumber
+    whatsapp: "https://wa.me/919966610329", // TODO: same number as enquiry.whatsappNumber
     instagram: "https://www.instagram.com/digitalskillswithmaha", // TODO: confirm handle
     youtube: "https://www.youtube.com/@digitalskillswithmaha", // TODO: confirm handle
-    email: "mailto:hello@example.com", // TODO: real email
+    email: "mailto:mahalakshmi.222@gmail.com", // TODO: real email
   },
   pillars: ["Learn", "Create", "Grow", "Succeed"] as const,
   /** Which page style first-time visitors see: "chat" (LLM style) or "classic". Visitors can switch. */
