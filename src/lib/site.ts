@@ -1,7 +1,13 @@
 /**
  * Single source of truth for brand details and links.
- * Update the TODO values before going live.
  */
+
+/** Maha's WhatsApp number: country code + 10 digits, digits only. Change it ONLY here. */
+const MAHA_WHATSAPP = "919966610329";
+
+/** Free Web3Forms access key (https://web3forms.com, enter the email that should receive enquiries). */
+const WEB3FORMS_KEY = ""; // ← paste the key inside the quotes, e.g. "a1b2c3d4-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
 export const site = {
   name: "Digital Skills with Maha",
   handle: "digitalskillswithmaha",
@@ -12,23 +18,19 @@ export const site = {
     "Digital Skills with Maha — AI video creation, poster designing, Meta ads and affiliate marketing. Learn one skill, every day.",
   url: "https://sandeep-miriyala.github.io/digitalskillswithmaha/llm",
   links: {
-    whatsapp: "https://wa.me/919966610329", // TODO: same number as enquiry.whatsappNumber
+    whatsapp: `https://wa.me/${MAHA_WHATSAPP}`,
     instagram: "https://www.instagram.com/digitalskillswithmaha", // TODO: confirm handle
     youtube: "https://www.youtube.com/@digitalskillswithmaha", // TODO: confirm handle
-    email: "mailto:mahalakshmi.222@gmail.com", // TODO: real email
+    email: "mailto:mahalakshmi.222@gmail.com",
   },
   pillars: ["Learn", "Create", "Grow", "Succeed"] as const,
   /** Which page style first-time visitors see: "chat" (LLM style) or "classic". Visitors can switch. */
   defaultStyle: "chat" as "chat" | "classic",
   enquiry: {
-    /**
-     * Free Web3Forms access key — enquiries are emailed to the address you register it with.
-     * Get one at https://web3forms.com (no signup, enter Maha's email). Safe to keep in public code.
-     * Can also be set via the NEXT_PUBLIC_WEB3FORMS_KEY environment variable.
-     */
-    web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "", // TODO: paste the key inside these quotes: || "your-access-key"
-    /** Maha's WhatsApp number for enquiries: country code + number, digits only. */
-    whatsappNumber: "91XXXXXXXXXX", // TODO: e.g. 919876543210
+    /** Enquiries are emailed to the address the Web3Forms key was created with. Safe to keep in public code. */
+    web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || WEB3FORMS_KEY,
+    /** Maha's WhatsApp number for enquiries (same as above). */
+    whatsappNumber: MAHA_WHATSAPP,
   },
 };
 
