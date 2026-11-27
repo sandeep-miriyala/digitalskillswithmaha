@@ -1,8 +1,13 @@
 name: Deploy to GitHub Pages
 
+# Publishes BOTH versions on one GitHub Pages site:
+#   main      → https://<user>.github.io/digitalskillswithmaha/
+#   llm-style → https://<user>.github.io/digitalskillswithmaha/llm/
+# Keep this SAME file on both branches. A push to either branch rebuilds both.
+
 on:
   push:
-    branches: [llm-style]
+    branches: [main, llm-style]
   workflow_dispatch:
 
 permissions:
@@ -18,35 +23,63 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site-main
+
+      - name: Checkout llm-style
+        uses: actions/checkout@v4
+        with:
+          ref: llm-style
+          path: site-llm
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: |
+            site-main/package-lock.json
+            site-llm/package-lock.json
 
       - id: pages
         uses: actions/configure-pages@v5
 
-      - run: npm ci
-
-      - name: Lint & type-check
+      - name: Build main (original)
+        working-directory: site-main
         run: |
+          npm ci
           npm run lint
           npm run typecheck
-
-      - name: Build static site
-        run: npm run build
+          npm run build
         env:
-          # "/digitalskillswithmaha" on username.github.io, "" on a custom domain
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          # Optional: repo Settings → Secrets → Actions → WEB3FORMS_KEY (else the key in src/lib/site.ts is used)
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
           NEXT_TELEMETRY_DISABLED: 1
 
+      - name: Build llm-style (/llm)
+        working-directory: site-llm
+        run: |
+          npm ci
+          npm run lint
+          npm run typecheck
+          npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}/llm
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Combine both sites
+        run: |
+          mkdir -p dist/llm
+          cp -r site-main/out/. dist/
+          cp -r site-llm/out/. dist/llm/
+          touch dist/.nojekyll
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./dist
 
   deploy:
     needs: build
